@@ -14,9 +14,5 @@ public class Method1Ref {
         System.out.println(a + " + " + b + " 연산 수행 ");
 
         return a + b;
-
-
-
-
     }
 }
