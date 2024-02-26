@@ -1,6 +1,5 @@
 package TIL;
 import java.util.Scanner;
-
 public class J11659 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -21,7 +20,6 @@ public class J11659 {
             int endNum = scanner.nextInt();
             result = array2[endNum] - array2[startNum-1];
             System.out.println(result);
-            result = 0;
         }
 
     }
