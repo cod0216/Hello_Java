@@ -27,6 +27,7 @@ public class J11724 {
         A[s].add(e);
         A[e].add(s);
     }
+
     int count = 0;
     for(int i = 1; i <=n; i++){
         if(!visited[i]) {
