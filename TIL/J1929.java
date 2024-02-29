@@ -17,6 +17,8 @@ public class J1929 {
             numArray[i] = i;
         }
         numArray[1] = 0;
+
+
         for(int i = 2; i <= Math.sqrt(m); i++){
             if(numArray[i] == 0){
                 continue;
@@ -25,6 +27,7 @@ public class J1929 {
                 numArray[j] = 0;
             }
         }
+
         for(int i = n; i <= m; i++){
             if(numArray[i] != 0)
             System.out.println(numArray[i]);
