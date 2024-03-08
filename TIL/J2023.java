@@ -23,21 +23,12 @@ public class J2023 {
              return;
          }
          cnt +=1;
-         int value = num * 10+1;
-        if(isPrime(value))
-            DFS(value,cnt);
+        for(int i = 0; i < 10; i++) {
+            int value = num * 10 + i;
+                if (isPrime(value))
+                    DFS(value, cnt);
 
-        value = num * 10 +3;
-        if(isPrime(value))
-            DFS(value,cnt);
-
-        value = num * 10 +7;
-        if(isPrime(value))
-            DFS(value,cnt);
-
-        value = num * 10 +9;
-        if(isPrime(value))
-            DFS(value,cnt);
+        }
 
     }
     public static boolean isPrime(int num){
