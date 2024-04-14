@@ -1,12 +1,5 @@
-package TIL;
-import java.io.*;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.LinkedList;
 
-public class test_Main {
-    public static void main(String[] args) throws IOException {
-        boolean[] visited = new boolean[5];
+class test_Main {
 
-        System.out.println(visited[0]);
-    }
 }
