@@ -5,10 +5,12 @@
 자바는 항상 값을 복사해서 새로운 변수에 대입힌다. 또한 자바의 데이터 타입을 크게 보면 **기본형(Primitive Type)**과 **참조형(Reference Type)**으로 나눌 수 있다.
 
 * **기본형** : 하나의 값을 여러 변수에 절대로 공유하지 않는다.
-![스크린샷 2024-04-16 오후 6.02.39.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fz8%2F_qp70zpn74s60w0bm9ldm4qc0000gn%2FT%2FTemporaryItems%2F%28screencaptureui%EC%9D%B4%28%EA%B0%80%29%20%EB%AC%B8%EC%84%9C%20%EC%A0%80%EC%9E%A5%20%EC%A4%91%20386%29%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-04-16%20%EC%98%A4%ED%9B%84%206.02.39.png)
+
+<img width="1279" alt="스크린샷 2024-04-16 오후 6 49 30" src="https://github.com/cod0216/Hello_Java/assets/83526046/ae38ea3f-c88f-40bd-9d26-b0d43ea5d611">
 
 * **참조형** : 하나의 객체를 참조값을 통해 여러 변수에서 공유할 수 있다.
-![스크린샷 2024-04-16 오후 6.03.48.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fz8%2F_qp70zpn74s60w0bm9ldm4qc0000gn%2FT%2FTemporaryItems%2F%28screencaptureui%EC%9D%B4%28%EA%B0%80%29%20%EB%AC%B8%EC%84%9C%20%EC%A0%80%EC%9E%A5%20%EC%A4%91%20387%29%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-04-16%20%EC%98%A4%ED%9B%84%206.03.48.png)
+
+<img width="1332" alt="스크린샷 2024-04-16 오후 6 50 02" src="https://github.com/cod0216/Hello_Java/assets/83526046/5db565e4-c294-4327-87c3-e78a7e645733">
 
 
 ## 공유 참조와 사이드 이펙트
@@ -24,13 +26,17 @@ public static void main(String[] args){
         b.setValue("부산"); // -> 사이드 이펙트 발생
 }
 ```
-![스크린샷 2024-04-16 오후 6.13.08.png](..%2F..%2F..%2F..%2F..%2FDesktop%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-04-16%20%EC%98%A4%ED%9B%84%206.13.08.png)
+
+<img width="1276" alt="스크린샷 2024-04-16 오후 6 50 24" src="https://github.com/cod0216/Hello_Java/assets/83526046/1afe5751-4ffb-441a-9cee-1f2dc496bafa">
+
 외 결과는 a 와 b 의 값에 같이 영향을 주어 a b 모두 부산이라는 결과가 출력된다.
+
 
 이렇게 주된 작업 외에 추가적으로 부수 효과를 일으키는 것을 사이드 이펙트라 한다. 프로그래밍에서 사이드 이펙트는 부통 **부정적인 의미**로 사용되는데,
 사이드 이펙트는 프로그램의 특정 부분에서 발생한 변경이 의도치 않게 다른 부분에 영향을 미치는 경우에 발생한다. 이로 인해 디버깅이 어려워지고 코드의 안정성이 저하될 수 있다.
 
-![스크린샷 2024-04-16 오후 6.18.41.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fz8%2F_qp70zpn74s60w0bm9ldm4qc0000gn%2FT%2FTemporaryItems%2F%28screencaptureui%EC%9D%B4%28%EA%B0%80%29%20%EB%AC%B8%EC%84%9C%20%EC%A0%80%EC%9E%A5%20%EC%A4%91%20388%29%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-04-16%20%EC%98%A4%ED%9B%84%206.18.41.png)
+<img width="1296" alt="스크린샷 2024-04-16 오후 6 50 50" src="https://github.com/cod0216/Hello_Java/assets/83526046/f8ce9215-7127-418c-8479-8b6ae2903de0">
+
 
 **사이드 이펙트 해결방안**
 
