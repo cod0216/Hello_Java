@@ -14,7 +14,9 @@
  `java.lang` 패키지는 모든 자바 애플리케이션에 자동으로 임포트된다. 따라서 `import java.lang.*`을 하지 않아도 된다.
  
 ## Object 클래스
-![스크린샷 2024-04-15 오후 10.14.57.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fz8%2F_qp70zpn74s60w0bm9ldm4qc0000gn%2FT%2FTemporaryItems%2F%28screencaptureui%EC%9D%B4%28%EA%B0%80%29%20%EB%AC%B8%EC%84%9C%20%EC%A0%80%EC%9E%A5%20%EC%A4%91%20378%29%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-04-15%20%EC%98%A4%ED%9B%84%2010.14.57.png)
+
+<img width="1129" alt="스크린샷 2024-04-16 오후 3 16 31" src="https://github.com/cod0216/Hello_Java/assets/83526046/5eef4b00-60bd-4f19-bfb9-19651e19d038">
+
 클래스를 상속받기 위해서는 `parent`를 사용하여 상속받을 수 있지만 praent를 사용하지 않을 경우 묵시적으로 `parent Object`를 하게 된다.
 
 >🤔 **묵시적(Implicit) vs 명시적(Explicit)**
@@ -43,7 +45,7 @@
 `Object`는 초상위 클래스 이므로 자바 내의 모든 클래스를 담을 수 있다.(**다형적 참조**) 그러므로 타입이 다른 객체들을 어딘가에 보관해야 한다면 바로 `Object`에 보관하면 된다.
 
 ## Object 다형성 한계
-![스크린샷 2024-04-15 오후 10.29.33.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fz8%2F_qp70zpn74s60w0bm9ldm4qc0000gn%2FT%2FTemporaryItems%2F%28screencaptureui%EC%9D%B4%28%EA%B0%80%29%20%EB%AC%B8%EC%84%9C%20%EC%A0%80%EC%9E%A5%20%EC%A4%91%20379%29%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-04-15%20%EC%98%A4%ED%9B%84%2010.29.33.png)
+<img width="1280" alt="스크린샷 2024-04-16 오후 3 15 11" src="https://github.com/cod0216/Hello_Java/assets/83526046/f6b6a70a-023c-4ff3-aeb8-488c4fed2f6c">
 
 Object는 모든 객체를 대상으로 다형적 참조를 할 수 있지만 Object를 통해 전달 받은 객체를 호출하려면 각 객체에 맞는 **다운 캐스팅**이 필요하다.
 ```java
@@ -79,7 +81,7 @@ public String toString() {
 > 그러므로 toString을 재정의 한다면 println 또한 재정의 된 메서드를 호출하게 된다.
 > 
 > 💡`Integer.toHexstring(System.identityHashCode(dog1)))`**에 관해서**
-> ![스크린샷 2024-04-15 오후 10.42.59.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fz8%2F_qp70zpn74s60w0bm9ldm4qc0000gn%2FT%2FTemporaryItems%2F%28screencaptureui%EC%9D%B4%28%EA%B0%80%29%20%EB%AC%B8%EC%84%9C%20%EC%A0%80%EC%9E%A5%20%EC%A4%91%20380%29%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-04-15%20%EC%98%A4%ED%9B%84%2010.42.59.png)
+> <img width="1215" alt="스크린샷 2024-04-16 오후 3 17 00" src="https://github.com/cod0216/Hello_Java/assets/83526046/174998ab-b2ae-43e2-8b63-d298b550104a">
 
 
 * OPC 원칙
@@ -98,7 +100,8 @@ public String toString() {
   * `ObjectPrinter.print(Object obj)`에 인자로 어떤 객체가 전달 될지는 프로그램을 실행해봐야 알 수 있다. 어떤 경우네는 Car 인스턴스가 넘어오고, 어떤 경우에는 Dog 인스턴스가 넘어온다. 이렇게 런타임에 어떤 인스턴스를 사용하는지를 나타내는 것이 동적 의존 관걔이다.
 
 ## equals()
-![스크린샷 2024-04-15 오후 10.56.45.png](..%2F..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fz8%2F_qp70zpn74s60w0bm9ldm4qc0000gn%2FT%2FTemporaryItems%2F%28screencaptureui%EC%9D%B4%28%EA%B0%80%29%20%EB%AC%B8%EC%84%9C%20%EC%A0%80%EC%9E%A5%20%EC%A4%91%20381%29%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202024-04-15%20%EC%98%A4%ED%9B%84%2010.56.45.png)
+<img width="1309" alt="스크린샷 2024-04-16 오후 3 17 29" src="https://github.com/cod0216/Hello_Java/assets/83526046/4434e8c2-9667-4db7-b3ab-d6d3c8372449">
+
 * **동일성(Identity)** : `==`연산자를 사용하여 두 객체의 **참조**가 동일한 객체를 가리키고 있는지 확인
 * **동등성(Equality)** : `equals()`메서드를 사용하여 두 객체가 **논리적**으로 동등한지 확인
 
