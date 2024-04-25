@@ -27,7 +27,7 @@ public class J1920_0 {
             int end = Num-1;
             int key = arr2[i];
             int answer = 0;
-            while(end >=start){
+            while(end >start){
                 int index = (start + end)/2;
                 if (key < arr1[index]) {
                     end = index-1;

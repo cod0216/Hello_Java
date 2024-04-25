@@ -25,7 +25,9 @@ public class J2178_0 {
                 field[i][j] = Integer.parseInt(str.substring(j,j+1));
             }
         }
+
         BFS(0,0);
+
         for (int i = 0; i < row; i++){
             for(int j = 0; j < col; j++){
                 System.out.print(field[i][j] + " ");
