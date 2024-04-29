@@ -9,14 +9,14 @@ public class J1300 {
         int index = Integer.parseInt(buffer.readLine());
         int key = Integer.parseInt(buffer.readLine());
         int num=0;
-        int[][] array = new int[index][index];
-        int[] value = new int[index*index];
+        int[] value = new int[index*index+0];
         for(int i = 0; i < index; i++){
             for(int j = 0; j< index; j++){
-                value[] = (i+1)*(j*1);
-                num++;
+                value[num++] = (i+1)*(j+1);
             }
         }
+        Arrays.sort(value);
+        System.out.println(value[key-1]);
 
     }
 }

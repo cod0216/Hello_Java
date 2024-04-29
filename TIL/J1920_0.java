@@ -5,7 +5,7 @@ public class J1920_0 {
 
     public static void main(String[] args) throws IOException{
 
-                BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 
         int Num = Integer.parseInt(buffer.readLine());
         String[] input = buffer.readLine().split(" ");
