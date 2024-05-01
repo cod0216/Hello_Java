@@ -6,46 +6,25 @@ import java.util.*;
 public class J1715 {
     public static void main(String[] args) throws IOException{
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-
         int key= Integer.parseInt(buffer.readLine());
-        int[] card = new int[key];
-
+        PriorityQueue<Integer> pqueue1 = new PriorityQueue<>();
 
         for (int i = 0; i < key; i++) {
-            card[i] = Integer.parseInt(buffer.readLine());
+            pqueue1.add(Integer.parseInt(buffer.readLine()));
         }
-
-        Arrays.sort(card);
-
-        int[] totalBox = new int[key];
-        int index = 2;
-        int d = 1;
-        int total = card[0]+card[1];
-        totalBox[0] = total;
-
-        while(index < card.length){
-            total += card[index++];
-            totalBox[d++] = total;
-        }
-
         int sum = 0;
-
-        for(int i = 0; i < key; i++){
-            sum += totalBox[i];
-            System.out.println(sum);
+        while(pqueue1.size()>1){
+           int a = pqueue1.poll();
+           int b = pqueue1.poll();
+                                        // 우선순위 큐활용을 배웠지만 수리 부분에 대해서 분석을 정홛하게 하지 못했음 -> 문제 이해가 안된건지 분석이 안된건지 메타인지가 잘 안됨
+                                        // 이게 그리드니까 어쩌면 그 부분을 잘 생각해서 복습 해보자
+           sum += a+b;
+           pqueue1.add(a+b);
         }
-
-        System.out.println();
-
-        for(int i = 0; i < key; i++) {
-            System.out.println("card = " + card[i]);
-        }
-
-        System.out.println();
-
-        for(int i = 0; i < key; i++){
-            System.out.println("totalBox = " + totalBox[i]);
-        }
-
+        System.out.println(sum);
     }
 }
+
+
+
+//https://puk0806.tistory.com/3
