@@ -14,8 +14,6 @@ public class DiscountService {
         } else {
             System.out.println(grade + " : 할인 X");
         }
-
         return price * discountPercent / 100;
-
     }
 }
