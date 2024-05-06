@@ -9,15 +9,28 @@ public class J1016 {
 
         String[] input = buffer.readLine().split(" ");
 
-        long num1 = Long.parseLong(input[0]);
-        long num2 = Long.parseLong(input[1]);
+        long min = Long.parseLong(input[0]);
+        long max = Long.parseLong(input[1]);
+        long gNum = (long)Math.sqrt(max);
+        boolean[] check = new boolean[(int)(max-min)+1];
 
-        long cnt = 0;
+        for(long i = 2; i <= gNum; i++){
+            long pow = i*i;
+            long start = min / pow;
+            if(min % pow != 0 ) start +=1;
 
-        for(long i = num1; i<=num2; i++){
-            if((Math.sqrt(i)*Math.sqrt(i)) != i)
-                cnt++;
+            for(long j = start; j<max; j++){
+                if(pow*j > max)break;
+                check[(int)((pow*j)-min)] = true;
+            }
         }
-        System.out.println(cnt);
+        int count= 0;
+        for(int i = 0; i <check.length; i++){
+            if(!check[i]){
+                count++;
+            }
+        }
+
+        System.out.println(count);
     }
 }
