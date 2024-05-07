@@ -6,11 +6,12 @@ import java.util.*;
 public class J1747 {
     public static void main(String[] args) throws IOException {
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+
         int key = Integer.parseInt(buffer.readLine());
 
         int[] array = new int[1_100_000+1];
 
-        for(int i = 0; i<=1100000 ; i++){
+        for(int i = 0; i<=1100000; i++){
             array[i] = i;
         }
         array[1]=0;

@@ -11,7 +11,7 @@ public class J11689 {
 
         for(long i = 2; i <Math.sqrt(num); i++){
             if(num % i == 0 ) {
-                
+
                 result = result - result/i;
                 while(num % i == 0){
                     num = num / i;
