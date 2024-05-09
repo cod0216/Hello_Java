@@ -3,17 +3,18 @@ package TIL;
 import java.io.*;
 import java.util.*;
 
+import org.w3c.dom.ls.LSOutput;
+
 public class J1016 {
     public static void main(String[] args)throws IOException {
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-
+       
         String[] input = buffer.readLine().split(" ");
-
         long min = Long.parseLong(input[0]);
         long max = Long.parseLong(input[1]);
         long gNum = (long)Math.sqrt(max);
         boolean[] check = new boolean[(int)(max-min)+1];
-
+       
         for(long i = 2; i <= gNum; i++){
             long pow = i*i;
             long start = min / pow;
@@ -30,7 +31,7 @@ public class J1016 {
                 count++;
             }
         }
-
+        
         System.out.println(count);
     }
 }
