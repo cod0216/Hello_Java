@@ -16,12 +16,15 @@ public class J21568 {
 
         long min = Math.min(A, B);
         long max = Math.max(A, B);
+        
         stack.push(A/B);
         long gcd = gcd(max,min);
+        
         if( C % gcd != 0){
             System.out.println(-1);
             return;
         }
+        
         euclid(1, 0);
         long num = C/gcd;
         System.out.println(x*num +" " + y*num);
