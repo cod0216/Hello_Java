@@ -18,9 +18,6 @@ public class J21568_0 {
 		long B = Long.parseLong(input[1]);
 		long C = Long.parseLong(input[2]);
 		
-//		long max = Math.max(A,B);
-//		long min = Math.min(A,B);
-		
 		if(C%euclid(A,B) == 0) {
 			
 			exEuclid(1,0);
