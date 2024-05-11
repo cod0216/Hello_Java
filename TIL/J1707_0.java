@@ -64,4 +64,22 @@ public class J1707_0 {
 			}
 		}
 	}
+	
+	public static void BFS(int n) {
+    	Queue<Integer> queue = new LinkedList<>();
+    	queue.add(n);
+    	
+    	while(!queue.isEmpty()) {
+    		int now = queue.poll();
+    		for(int i : A[now]) {
+    			if(!visited[i]) {
+    				visited[i] = true;
+    				queue.add(i);
+    			}else {
+    				if(visited[i] == visited[now])
+    					
+    			}
+    		}
+    	}
+    }
 }

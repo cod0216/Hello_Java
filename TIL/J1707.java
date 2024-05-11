@@ -44,20 +44,17 @@ public class J1707 {
     }
 
     private static void DFS(int n){
-
-            for (int node : linkedList[n]) {
-                if(!visited[node]) {
-                    visited[node] =true;
-                    union[node] = (union[n] + 1) % 2;
-                    DFS(node);
-                }
-                else {
-                    if (union[n] == union[node])
-                        isEven = false;
-                }
-
-            }
+		for (int node : linkedList[n]) {
+			if(!visited[node]) {
+				visited[node] =true;
+				union[node] = (union[n] + 1) % 2;
+				DFS(node);
+			}
+			else {
+				if (union[n] == union[node])
+					isEven = false;
+			}
+		}
     }
-
 }
 
