@@ -38,7 +38,8 @@ public class J1707_0 {
 
 			}
 			for(int i = 1; i<=N; i++) {
-				DFS(i, color[i]);
+//				DFS(i, color[i]);
+				BFS(i, color[i]);
 //				System.out.println(color[i]);
 			}
 			
@@ -51,10 +52,11 @@ public class J1707_0 {
 	public static void DFS(int node, int num) {
 		visited[node] = true;
 		color[node] = num%2;
-		System.out.println("node = " + node + ", num = " + num);
+//		System.out.println("node = " + node + ", num = " + num);
 		for(int i : A[node]) {
 			if(!visited[i]) {
 				DFS(i, num+1);
+				
 			}else {
 				if(color[i] == (num)%2) {
 //					System.out.println("node = " + node + ", i = " + i + ", color["+i+"] = "+ color[i] + ", (num+1)%2 = " + (num+1)%2 );
@@ -65,19 +67,22 @@ public class J1707_0 {
 		}
 	}
 	
-	public static void BFS(int n) {
+	public static void BFS(int n, int num) {
     	Queue<Integer> queue = new LinkedList<>();
     	queue.add(n);
-    	
+    	color[n] = num%2;
     	while(!queue.isEmpty()) {
     		int now = queue.poll();
     		for(int i : A[now]) {
     			if(!visited[i]) {
+    				color[i] = (color[now] +1)%2;
     				visited[i] = true;
     				queue.add(i);
     			}else {
-    				if(visited[i] == visited[now])
-    					
+    				if(color[i] == color[now]) {
+    					check = true;
+    					return;
+    				}
     			}
     		}
     	}
