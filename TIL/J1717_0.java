@@ -52,9 +52,16 @@ public class J1717_0 {
 	
 	public static int find(int num) {
 		if (list[num] != num)  
-			list[num] = find(list[num]);
+			return list[num] = find(list[num]);
 		
 		return num;
-		
 	}
+
+	
+//    private static int find(int num){
+//        if(num == list[num])
+//            return list[num];
+//        else return  list[num] = find(list[list[num]]);
+//
+//    }
 }
