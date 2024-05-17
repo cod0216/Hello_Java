@@ -10,6 +10,7 @@ public class J1068 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+
         int node = Integer.parseInt(buffer.readLine());
 
         tree = new int[node];
@@ -17,10 +18,12 @@ public class J1068 {
 
         String[] input = buffer.readLine().split(" ");
         int root = 0;
+
         for (int i = 0; i < node; i++) {
             tree[i] = Integer.parseInt(input[i]);
             if (tree[i] == -1) root = i;
         }
+
         int removeNode = Integer.parseInt(buffer.readLine());
 
         removeNode(removeNode);
@@ -41,15 +44,12 @@ public class J1068 {
     public static void findLeaf(int node) {
         boolean check = true;
         visited[node] = true;
-        if(tree[node] != -2){
-            for(int i = 0; i<tree.length; i++) {
-                if (!visited[i] && tree[i] == node) {
-                    findLeaf(i);
-                    check = false;
-                }
+        for(int i = 0; i<tree.length; i++){
+            if(!visited[i] && tree[i] == node){
+                check = false;
+                findLeaf(i);
             }
-            if(check) value++;
         }
-
+        if(check)value++;
     }
 }
