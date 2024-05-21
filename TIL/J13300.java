@@ -25,7 +25,7 @@ public class J13300 {
         int cnt = 0;
         int room = 0;
         for(int i = 1; i <= N; i++){
-            cnt += arr[0][i]
+            cnt += arr[0][i];
         }
         System.out.println(room);
     }
