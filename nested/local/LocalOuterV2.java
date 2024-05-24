@@ -1,14 +1,14 @@
 package nested.local;
 
-public class LocalOuterV1 {
+public class LocalOuterV2 {
     private int outInstanceVar = 3;
+
     public void process(int paramVar){
         int localVar = 1;
-
-        class LocalPrinter {
+        class LocalPrinter implements Printer{
             int value = 0;
-
-            public void printData(){
+            @Override
+            public void print() {
                 System.out.println("value = " + value);
                 System.out.println("localVar = " + localVar);
                 System.out.println("paramVar = " + paramVar);
@@ -16,13 +16,12 @@ public class LocalOuterV1 {
             }
         }
 
-        LocalPrinter printer = new LocalPrinter();
-        printer.printData();
+        Printer printer = new LocalPrinter();
+        printer.print();
     }
 
     public static void main(String[] args) {
-        LocalOuterV1 localOuterV1 = new LocalOuterV1();
-        localOuterV1.process(2);
+        LocalOuterV2 localOuterV2 = new LocalOuterV2();
+        localOuterV2.process(2);
     }
-
 }
