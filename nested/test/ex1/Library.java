@@ -16,7 +16,7 @@ public class Library {
             System.out.println("도서관 저장 공간이 부족합니다.");
             return;
         }
-        
+
         books[bookCount++] = new Book(title, author);
 
     }
