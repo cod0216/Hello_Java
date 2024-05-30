@@ -1,0 +1,16 @@
+package exception.ex3;
+
+import exception.ex3.NetworkClientExceptionV3;
+
+public class ConnectExceptionV3 extends NetworkClientExceptionV3 {
+    private final String address;
+
+    public ConnectExceptionV3(String message, String address) {
+        super(message);
+        this.address = address;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+}
