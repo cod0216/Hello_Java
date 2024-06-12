@@ -14,12 +14,16 @@ public class J1377 {
         for(int i = 0; i< index; i++){
             A[i] = new LinkedList<>();
         }
+
         for(int i = 0; i<index; i++){
             int num = Integer.parseInt(buffer.readLine());
             A[i].add(new int[]{num, i});
         }
 
+//        Collections.sort(A, Comparator.comparingInt(a -> a.get(0)[0]));
+
         Arrays.sort(A, Comparator.comparingInt(a -> a.get(0)[0]));
+
 
         for(int i = 0; i<index; i++){
             int[] a =A[i].get(0);
