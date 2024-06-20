@@ -28,6 +28,8 @@ public class MyArrayList<E> implements MyList<E> {
         elementData[size] = e;
         size++;
     }
+
+    @Override
     public void add(int index, Object e){
         if(size == elementData.length)
             grow();

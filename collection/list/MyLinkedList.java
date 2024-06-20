@@ -41,6 +41,8 @@ public class MyLinkedList<E> implements MyList<E> {
         }
         size++;
     }
+
+    @Override
     public void add(int index, E e) {
         Node<E> newNode = new Node<>(e);
         if (index == 0) {
@@ -84,7 +86,7 @@ public class MyLinkedList<E> implements MyList<E> {
         }
         return x;
     }
-
+    @Override
     public int indexOf(E o) {
         int index = 0;
         for(Node<E> x = first; x != null; x = x.next){
