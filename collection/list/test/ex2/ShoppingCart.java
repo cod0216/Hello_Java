@@ -14,7 +14,7 @@ public class ShoppingCart {
         int sum = 0;
         for(Item a : items){
 
-            System.out.println("상품명 : " + a.getName() + ", 합계 : " + a.getTotalPrice(););
+            System.out.println("상품명 : " + a.getName() + ", 합계 : " + a.getTotalPrice());
             sum += a.getTotalPrice();;
         }
 
