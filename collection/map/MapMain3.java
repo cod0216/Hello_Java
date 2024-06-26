@@ -18,6 +18,6 @@ public class MapMain3 {
         studentMap.putIfAbsent("StudentA", 100);
         studentMap.putIfAbsent("StudentB", 100);
         System.out.println(studentMap);
-        
+
     }
 }
