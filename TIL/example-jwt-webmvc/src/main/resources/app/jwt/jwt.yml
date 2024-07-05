@@ -1,0 +1,4 @@
+app:
+  jwt: # NOTE local 프로파일 안 넣으면 안 돌아감.
+    secret: ${JWT_SECRET}
+    expiration: 1_800
