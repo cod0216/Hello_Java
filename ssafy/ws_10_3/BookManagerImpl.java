@@ -201,7 +201,6 @@ public class BookManagerImpl implements IBookManager {
         }
     }
 
-    //리스트에서 모든 데이터의 가격을 합산하고 리스트의 크기를 나눠 평균값을 계산 후 반환한다.
     @Override
     public double getPriceAvg() {
         int totalPrice = 0;
