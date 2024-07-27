@@ -87,14 +87,8 @@ public class Book {
     //toString 오버라이드
     @Override
     public String toString() {
-        return "Book{" +
-                "isbn='" + isbn + '\'' +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", publisher='" + publisher + '\'' +
-                ", price=" + price +
-                ", desc='" + desc + '\'' +
-                ", quantity=" + quantity +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append(String.format("%-8s \t | %-8s \t | %-8s \t | %-8s \t | %-8d \t | %-8s \t | %-8d"));
+        return builder.toString();
     }
 }
