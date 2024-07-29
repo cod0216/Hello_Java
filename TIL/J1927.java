@@ -17,5 +17,12 @@ public class J1927 {
                 }else System.out.println(pq.poll());
             }else pq.offer(value);
         }
+
+//        int a= A();
     }
+
+//    public int A(){
+//        return 3;
+
+//    }
 }
