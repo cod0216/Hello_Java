@@ -18,6 +18,7 @@ public class snail {
         int right = -1;
         int top = 1;
         int k = 1;
+        int n = 0;
 
 
         for(int i = 0; i < 10; i ++){
