@@ -33,7 +33,7 @@ N : 피자 반죽 개수
 public class J1756 {
     static long[] oven;
     static long[] dough;
-    static long endMemory;
+    static long endMemory =Integer.MIN_VALUE;
     static boolean sameDough = true;
     public static void main(String[] args) throws IOException {
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
@@ -59,15 +59,17 @@ public class J1756 {
                 oven[i + 1] = oven[i];
                 sameDough = false;
             }
-
         }
-        for(int i = 0; i < N; i ++) {
-            if (dough[i] > oven[0]){
-                System.out.println(0);
-                System.exit(0);
 
-            }
-        }
+//        for(int i = 0; i < N; i ++) {
+//            if (dough[i] > oven[0] || endMemory == 0){
+//                System.out.println(0);
+//                System.exit(0);
+//
+//            }
+//        }
+
+
 
 /*
             3
@@ -80,7 +82,7 @@ public class J1756 {
         endMemory = D;
         long start = 0;
         long end = endMemory;
-        long middle = start+end/2;
+        long middle = (start+end)/2;
 
         for (int i = 0; i < N; i++) {
             start = 0;
@@ -95,11 +97,12 @@ public class J1756 {
 
             while (start <= end) {
                 middle = (start + end) / 2;
-                if (key < oven[(int)middle])
+                if (key <= oven[(int)middle]) {
                     start = middle+1;
+                }
                 else if (key > oven[(int)middle])
                     end = middle-1;
-                else break;
+
             }
 
             endMemory = findEnd(middle);
@@ -115,7 +118,5 @@ public class J1756 {
             }
         }
         return endMemory-1;
-
-
     }
 }
