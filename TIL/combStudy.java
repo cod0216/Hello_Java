@@ -61,11 +61,6 @@ public class combStudy {
         isSelected[cnt] = true;
         powerSet(cnt+1, isSelected);
         powerSet(cnt+1, isSelected);
-
-
-
-
-
     }
 
     //--------------------------------------------------------------------------------------
