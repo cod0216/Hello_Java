@@ -25,19 +25,26 @@ public class J1010 {
                  dp[i][i] = 1;
              }
 
-             for(int i = 1 ; i <= M; i++){
-                 for(int j = 1 ; j <= M; j++){
-                     dp[i][j] = dp[i-1][j]+dp[i-1][j-1];
-                 }
-             }
+//             for(int i = 1 ; i <= M; i++){
+//                 for(int j = 1 ; j <= M; j++){
+//                     dp[i][j] = dp[i-1][j]+dp[i-1][j-1];
+//                 }
+//             }
+            t++;
+            System.out.println(combo(M,N));
+            for(int i = 0 ; i <= M; i++){
+                for(int j = 0 ; j <= M; j++){
+                    System.out.print(dp[i][j]+ " ");
+                }
+                System.out.println();
+            }
 
-             t++;
-            System.out.println(dp[M][N]);
+
         }
     }
 
     public static int combo(int M, int N){
-        if (dp[M][N] != -1) return dp[M][N];
+        if (dp[M][N] != 0) return dp[M][N];
         return dp[M][N] = combo(M-1,N) + combo(M-1,N-1);
     }
 

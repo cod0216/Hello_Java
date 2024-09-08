@@ -4,114 +4,129 @@ import java.io.*;
 import java.util.*;
 
 public class J17471 {
-    static int N;
+    static int N,min;
+    static boolean[] redPeople, bluePeople,visited;
+    static int[] people;;
+
     static ArrayList<Integer>[] cities;
-    static int[] people;
-    static boolean[] color; //두개의 색으로 분류 하는 배열
-    static boolean[] visited;
-    static int truePeople;
-    static int falsePeople;
-    static int min;
-
-    public static void main(String[] args) throws IOException {
+    public static void main (String[] args) throws IOException {
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-
+        min = Integer.MAX_VALUE;
         N = Integer.parseInt(buffer.readLine());
-
-        String[] input = buffer.readLine().split(" ");
-
         cities = new ArrayList[N+1];
         people = new int[N+1];
+        visited = new boolean[N+1];
 
-
-        for(int i = 0; i < N+1; i++) {
+        for(int i = 0 ; i <= N; i++){
             cities[i] = new ArrayList<>();
         }
 
-
-        for(int i = 0; i < N; i++) {
-            people[i+1] = (Integer.parseInt(input[i]));
-        } // 초기화 밑 도시 정도 저장
+        String[] input = buffer.readLine().split(" ");
 
 
-        for(int i = 0; i < N; i++){ // 도시 연결 완료
+        for(int i =0; i< N; i++){
+            people[i+1] = Integer.parseInt(input[i]);
+        }
+
+        for(int i = 1; i <= N; i++){
             input = buffer.readLine().split(" ");
-            int k = Integer.parseInt(input[0]);
-            for(int j = 0 ; j < k; j++) {
-                cities[i].add(Integer.parseInt(input[j+1]));
+            int index = Integer.parseInt(input[0]);
+
+            for(int j = 1; j<= index; j++){ //수정 완료
+                int node = Integer.parseInt(input[j]);
+                cities[i].add(node);
             }
         }
 
-        min = Integer.MAX_VALUE;
-        visited = new boolean[N+1];
-        color = new boolean[N+1];
-//        truePeople = 0;
-//        falsePeople = 0;
+        // ======== 입력 완료 ==========
 
-        selectColor(0,0); // 색 지정  -> 부분집합
+        powerSet(N, 0, new boolean[N+1]);
 
-        if(min == Integer.MAX_VALUE) min = -1;
-        System.out.println(min);
+        System.out.println(min == Integer.MAX_VALUE ? -1 : min);
 
     }
 
-    /*
-    부분집합으로 풀고 ( 섹 정)
-    연결된 곳 벨리데이션하고
-    참이면 갯수
-     */
+    public static void powerSet(int maxDepth, int cnt, boolean[] isSelected ) {
+        if(cnt >= maxDepth) {
+            redPeople = new boolean[N+1];
+            bluePeople = new boolean[N+1];
+            visited = new boolean[N+1];
 
-    public static void cal(){
-        int res = Math.abs(truePeople - falsePeople);
-        min = Math.min(min, res);
-    }
-
-    public static void temp(int start, int cnt, int n){
-        if(n >= cnt){
-            countPeople();
-            cal();
+            setColor(isSelected);
+            int redStart = getStartNum(redPeople);
+            int redCount = getCount(redPeople);
+                if(redStart != -1 && redCount != 0 && peopleCheck(redStart, redCount, redPeople)) {
+//                    System.out.println("redCount = " + redCount);
+                    int blueStart = getStartNum(bluePeople);
+                    int blueCount = getCount(bluePeople);
+                    if(blueStart != -1 && blueCount != 0 && peopleCheck(blueStart, blueCount, bluePeople)) {
+//                        System.out.println("redCount : " + redCount + ", blueCount = " + blueCount);
+                        int redPop= getPopulation(redPeople, people);
+                        int bluePop= getPopulation(bluePeople, people);
+                        min = Math.min(Math.abs(redPop - bluePop), min);
+                    }
+                }
             return;
         }
 
-        for(int node : cities[start]){
-            if(color[node] && !visited[node]){
-                visited[node] = true;
-                temp(node, cnt, n+1);
-            }
-        }
+        isSelected[cnt] = true;
+        powerSet(N, cnt+1, isSelected);
+        isSelected[cnt] = false;
+        powerSet(N, cnt+1, isSelected);
+
     }
 
-    /**
-     *
-     * @param cnt 인덱스 번호
-     * @param n 부분집합 된 개수
-     */
-    private static void selectColor(int cnt, int n) {
-        if(cnt >= N+1){
-            visited = new boolean[N+1];
-            for(int i = 1 ; i<N; i++){
-                if(color[i]) {
-                    temp(i,n,0);
-                    break;
+    private static int getCount(boolean[] isSelect) {
+        int cnt =0;
+        for(int i = 1; i<= N; i++){
+            if(isSelect[i]){
+                cnt++;
+            }
+        }
+        return cnt;
+    }
+
+    public static int getPopulation(boolean[] people, int[] population) {
+        int sum = 0;
+        for(int i = 1; i <= N; i++) {
+            if(people[i]){
+                sum += population[i];
+            }
+        }
+        return sum;
+    }
+
+    public static boolean peopleCheck(int start, int count, boolean[] people) {
+        visited[start] = true;
+        int cnt = 1;
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(start);
+
+        while(!queue.isEmpty()){
+            int now = queue.poll();
+            for(int node : cities[now]) {
+                if(!visited[node] && people[node]){
+                    visited[node] = true;
+                    queue.offer(node);
+                    cnt++;
                 }
             }
-            return;
         }
 
-        color[cnt] = true;
-        selectColor(cnt+1, n+1);
-        color[cnt] = false;
-        selectColor(cnt+1, n);
+        if(cnt >= count) return true;
+        return false;
+    }
+    public static void setColor(boolean[] isSelect) {
+        for(int i = 1; i <= N; i++){
+            if(isSelect[i]) redPeople[i] = true;
+            else bluePeople[i] = true;
+        }
     }
 
-
-    public static void countPeople(){
-
-        truePeople = 0;
-        falsePeople = 0;
-        for(int j = 1; j <= N; j++){
-            if(color[j]) truePeople += people[j];
-            else falsePeople+=people[j];
-        }
+    public static int getStartNum(boolean[] isSelect) {
+       for(int i = 1; i <=N; i++) if(isSelect[i]) return i;
+       return -1;
     }
 }
+
+
