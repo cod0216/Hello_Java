@@ -64,7 +64,7 @@ public class J1916 {
     }
     public static void dijkstra(int s, int e){
         PriorityQueue<Node1916> pq = new PriorityQueue();
-        pq.offer(new Node1916(s, 0));
+        pq.offer(new Node1916(s, e));
         arr[s] = 0;
         while(!pq.isEmpty()){
             Node1916 nowNode = pq.poll();
