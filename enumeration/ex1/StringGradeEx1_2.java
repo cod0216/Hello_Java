@@ -18,8 +18,5 @@ public class StringGradeEx1_2 {
         System.out.println("gold 등급의 할인 금액 :" + gold);
         System.out.println();
 
-
-
-
     }
 }
