@@ -25,6 +25,7 @@ public class J11657 {
         }
         array[0] = 0;
         array2[0] = 0;
+
         for(int i = 0; i<M; i++){
             list[i] = new ArrayList<>();
             input = buffer.readLine().split(" ");
@@ -36,21 +37,29 @@ public class J11657 {
         }
 
         for(int i = 0; i<N-1;i++){
+
             array=bell(array);
+
         }
         for(int i = 0; i<N;i++) {
+
             array2 = bell(array2);
+
         }
 
         for(int i =1; i < N;i++) {
+
             if (array[i] != array2[i]) {
                 System.out.println(-1);
                 return;
             }
+
         }
-        for(int i =1; i < N;i++){
+        for(int i =1; i < N; i++){
+
             if(array[i] == 9999999) System.out.println(-1);
             else System.out.println(array[i]);
+
         }
     }
 
@@ -59,7 +68,7 @@ public class J11657 {
             int[] node = list[i].get(0);
             int start = node[0]-1;
 
-            if(array[start] == 9999999) continue; //?? 왜??
+            if(array[start] == 9999999) continue;
 
             int end = node[1]-1;
             int weight = node[2];
