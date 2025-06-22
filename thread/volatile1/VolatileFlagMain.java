@@ -24,7 +24,7 @@ public class VolatileFlagMain {
         public void run() {
             MyLogger.log("task 시작");
             while(runFlag) {
-                System.out.println("돌돌");
+                System.out.println("Thread - 작업 중");
             }
             MyLogger.log("task 종료");
 
