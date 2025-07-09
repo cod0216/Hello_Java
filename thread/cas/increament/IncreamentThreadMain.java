@@ -4,9 +4,12 @@ import util.ThreadUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class IncreamentThreadMain {
     public static final int THREAD_COUNT = 1000;
+
 
     public static void main(String[] args) throws InterruptedException {
         test(new BasicInteger());
