@@ -2,85 +2,69 @@ package TIL;
 
 import java.util.*;
 import java.io.*;
+class Inf implements Comparable<Inf> {
+    int u;
+    int d;
+    int t;
 
-
-public class J9663 {
-    static int N, ans;
-    static int[] dx = new int[]{1, 1, -1, -1, 1, 0, -1, 0};
-    static int[] dy = new int[]{1, -1, 1, -1, 0, -1, 0, 1};
-    static boolean[][] visited;
-    static boolean[] col, dl, dr;
-
-    public static void main(String[] args) throws IOException {
-        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-
-        N = Integer.parseInt(buffer.readLine());
-        visited = new boolean[N][N];
-
-        col = new boolean[N];
-        dl = new boolean[N * 2 -1];
-        dr = new boolean[N * 2 -1];
-
-        for(int i = 0; i < N; i++){
-            dfs(0,i);
-        }
-
-        System.out.println(ans);
+    public Inf(int u, int d, int t){
+        this.u = u;
+        this.d = d;
+        this.t = t;
     }
 
-    public static void dfs(int r, int c){
-
-        if(!isIn(r,c)) return;
-        int d1 = r + c;
-        int d2 = r - c + (N - 1);
-
-        if(col[c] || dr[d1] || dl[d2]) return;
-
-        col[c] = dr[d1] = dl[d2] = true;
-
-        if(r == N - 1){
-            ans++;
-            col[c] = dr[d1] = dl[d2] = false;
-            return;
-        }
-
-        int nr = r + 1;
-        for(int nc = 0 ; nc < N; nc++){
-            dfs(nr, nc);
-        }
-        col[c] = dr[d1] = dl[d2] = false;
-    }
-
-    public static int[][] process(int x, int y, int[][] map){
-        LinkedList<int[]> queue = new LinkedList<>();
-        boolean[][] check = new boolean[N][N];
-
-        for(int d = 0; d < 8; d++){
-            queue.offer(new int[]{x, y, d});
-        }
-
-        while(!queue.isEmpty()){
-            int[] cur = queue.poll();
-
-            int cx = cur[0];
-            int cy = cur[1];
-            int d = cur[2];
-
-            int nx = cx + dx[d];
-            int ny = cy + dy[d];
-
-            if(!isIn(nx,ny)) continue;
-            if(check[nx][ny]) continue;
-
-            check[nx][ny] = true;
-            map[nx][ny] = 1;
-            queue.offer(new int[]{nx, ny, d});
-        }
-
-        return map;
-    }
-    public static boolean isIn(int x, int y){
-        return x >= 0 && y >= 0 && x < N && y < N;
+    public int compareTo(Inf o){
+        return this.t - o.t;
     }
 }
+public class J9663 {
+    static PriorityQueue<Inf>[] queue;
+    static int N, E, time[];
+    public static void main(String[] args) throws IOException {
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+        String[] input = buffer.readLine().split(" ");
 
+        N = Integer.parseInt(input[0]);
+        E = Integer.parseInt(input[1]);
+        queue = new PriorityQueue[N+1];
+
+        for(int i = 0; i <= N; i++){
+            queue[i] =  new PriorityQueue<>();
+        }
+
+        input = buffer.readLine().split(" ");
+        time = new int[N];
+
+        for(int i = 0 ; i < N; i++){
+            time[i] = Integer.parseInt(input[i]);
+        }
+
+
+        for(int i = 0 ; i < E; i++){
+            input = buffer.readLine().split(" ");
+
+            int u = Integer.parseInt(input[0]);
+            int d = Integer.parseInt(input[1]);
+            int t = Integer.parseInt(input[2]);
+
+            queue[u].offer(new Inf(u, d, t));
+        }
+
+        int station = 0;
+        int operation = 0;
+        int n = 0;
+        while(E > n){
+            operation += time[station];
+            Inf person = queue[station].poll();
+            if(person.t > operation){
+                queue[station].offer(person);
+                station = (station+1) % N;
+                continue;
+            }
+            station = (station+1) % N;
+            n++;
+        }
+
+        System.out.println(operation);
+    }
+}
