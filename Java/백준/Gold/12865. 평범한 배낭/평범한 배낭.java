@@ -26,11 +26,14 @@ public class Main {
         }
         
         for(int i = 1; i <= N; i++){
-            for(int j = 0; j <= M; j++){
+            for(int j = 0; j <= M; j++){            
                 dp[i][j] = dp[i-1][j];
-                if(item[i] <= j) dp[i][j] = Math.max(dp[i-1][j-item[i]] + value[i], dp[i][j]);
+                if(item[i] <= j){
+                    dp[i][j] = Math.max(dp[i][j], dp[i-1][j-item[i]] + value[i]);
+                }
             }
-        }        
+        }
+        
             System.out.println(dp[N][M]);
     }
 }
