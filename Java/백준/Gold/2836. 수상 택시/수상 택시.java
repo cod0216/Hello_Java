@@ -10,8 +10,8 @@ class Info implements Comparable<Info> {
     }
     
     public int compareTo(Info o){
-        if (o.s == this.s) return this.e - o.e;
-        return o.s- this.s;
+        if(this.s == o.s) return this.e - o.e;
+        return o.s - this.s;
     }
 }
 
@@ -34,51 +34,45 @@ public class Main {
             
             int s = Integer.parseInt(input[0]);
             int e = Integer.parseInt(input[1]);
-            
-            if( s > e) queue.offer(new Info(s,e));
+            if(e < s) queue.offer(new Info(s, e));
             
         }
         
-
-        int start=0;
-        int end=0;
+        int start = 0;
+        int end = 0;
         long diff = 0;
-        long cnt = 0;
+        long sum = 0;
         
-        if(!queue.isEmpty()){
-            start = queue.peek().e;
-            end = queue.peek().s;
-            
-            queue.poll();
+        if(queue.isEmpty()){
+            System.out.println(M);
+            return;
+        }else {
+            Info cur = queue.peek();
+            start = cur.e;
+            end = cur.s;
             
             diff = Math.abs(start-end);
-            // System.out.println("diff : " + diff);
         }
 
         while(!queue.isEmpty()){
             Info cur = queue.poll();
-            int s = cur.s;
             int e = cur.e;
-            
-            if(s < start) {
+            int s = cur.s;
+            if(start <= s && e < start){
                 start = e;
+            } else if(s < start){
+                diff = Math.abs(start-end);
+                sum += diff;
                 end = s;
-                cnt += diff;
-                diff = Math.abs(s-e);
-                // System.out.println("인 start : " + start + ", end : " + end + ", s : " + s + ", e : " + e + ", diff : " + diff);
-            }
-            else if(start <= s && e < start){
-                diff += Math.abs(start-e);
-                // System.out.println("start : " + start + ", end : " + end + ", s : " + s + ", e : " + e + ", diff : " + diff);
                 start = e;
-                end = s;
-
             }
         }
 
+        diff = Math.abs(start-end);
+        sum += diff;
         
-        cnt += diff;
-        long ans = (cnt*2) + M;
+        sum = sum * 2;
+        long ans = sum + M;
         
         System.out.println(ans);
     }
