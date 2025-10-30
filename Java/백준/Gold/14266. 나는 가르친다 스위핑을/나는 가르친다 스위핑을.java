@@ -2,17 +2,17 @@ import java.util.*;
 import java.io.*;
 
 class Info implements Comparable<Info> {
-    double e;
+    float e;
     int v;
     
-    public Info(double e, int v){
+    public Info(float e, int v){
         this.e = e;
         this.v = v;
     }
     
     public int compareTo(Info o){
         if(o.e == this.e) return  o.v - this.v ;
-        return Double.compare(this.e, o.e);
+        return Float.compare(this.e, o.e);
     }
 }
 
@@ -33,11 +33,11 @@ public class Main {
             int x2 = Integer.parseInt(input[2]);
             int y2 = Integer.parseInt(input[3]);
             
-            double res1 = getLine(x1,y1);
-            double res2 = getLine(x2,y2);
+            float res1 = getLine(x1,y1);
+            float res2 = getLine(x2,y2);
             
-            double max = Math.max(res1, res2);
-            double min = Math.min(res1, res2);
+            float max = Math.max(res1, res2);
+            float min = Math.min(res1, res2);
             
             queue.offer(new Info(max, -1));
             queue.offer(new Info(min, 1));
@@ -55,7 +55,7 @@ public class Main {
         System.out.println(max);
     }
     
-    public static double getLine(int x, int y){
-        return (double)y/x;
+    public static float getLine(int x, int y){
+        return (float)y/x;
     }
 }
