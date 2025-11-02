@@ -48,10 +48,10 @@ public class Main {
             int e = now.end;
             
             
-            if(s <= end && e > end){
-                end = e;
+            if(s <= end){
                 yes[now.n] = n;
-            }else if(s > end){
+                if(e > end) end = e;
+            }else {
                 start = s;
                 end = e;
                 n = now.n;
