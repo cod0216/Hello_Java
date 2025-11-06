@@ -1,9 +1,8 @@
 package io.file.text;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.*;
 
 import static java.nio.charset.StandardCharsets.*;
 

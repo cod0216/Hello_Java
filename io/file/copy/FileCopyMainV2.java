@@ -1,8 +1,6 @@
 package io.file.copy;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class FileCopyMainV2 {
     private static final int FILE_SIZE = 200 * 1024 * 1024; // 200MB

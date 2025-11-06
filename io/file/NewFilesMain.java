@@ -1,10 +1,7 @@
 package io.file;
 
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 
 public class NewFilesMain {
@@ -46,7 +43,6 @@ public class NewFilesMain {
         System.out.println("Is regular file: " + attrs.isRegularFile());
         System.out.println("is symbolic link: " + attrs.isSymbolicLink());
         System.out.println("Size: " + attrs.size());
-
 
     }
 
