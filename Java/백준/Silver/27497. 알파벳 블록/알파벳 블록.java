@@ -1,49 +1,37 @@
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class Main {
-    static LinkedList<Character> queue = new LinkedList<>();
-    static LinkedList<Integer> stack = new LinkedList<>();
-    public static void main(String[] args) throws IOException {
-        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(buffer.readLine());
-        int a;
-        char b = 'd';
-        
-        while(N --> 0){
-            String[] input = buffer.readLine().split(" ");
-            
-            a = Integer.parseInt(input[0]);
-            if(a != 3) b = input[1].charAt(0);
-            
-            play(a, b);
-        }
-        if(queue.isEmpty()) System.out.println(0);
-        StringBuilder sb = new StringBuilder();
-        while(!queue.isEmpty()){
-            sb.append(queue.pollFirst());
-        }
-            System.out.println(sb.toString());
-    }
-    
-    public static void play(int a, char b){
-        if(a==1) {
-            queue.addLast(b);
-            stack.push(a);
-        }
-        else if(a==2){
-            queue.addFirst(b);  
-            stack.push(a);
-            
-        } 
-        else if(a==3 && !queue.isEmpty()){
-            int command = stack.pop();
-            if(command == 1){
-                queue.pollLast();
-            } else {
-                queue.pollFirst();
-            }
-        } 
-    }
-    
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	static StringBuilder sb = new StringBuilder(), lb = new StringBuilder();
+	public static void main(String[] args) throws Exception {
+		int n = Integer.parseInt(br.readLine()), idx = 0;
+		boolean[] left = new boolean[n];
+		char[] ch = new char[n];
+		for(int i=0;i<n;i++){
+			String line = br.readLine();
+			if(line.charAt(0)=='3'){
+				idx = Math.max(--idx,0);
+			}else{
+				left[idx] = line.charAt(0)=='2';
+				ch[idx++] = line.charAt(2);
+			}
+		}
+		if(idx==0){
+			bw.write("0");
+			bw.flush();
+			return;
+		}
+		for(int i=0;i<idx;i++){
+			if(left[i]) lb.append(ch[i]);
+			else sb.append(ch[i]);
+		}
+		lb.reverse();
+		bw.write(lb.toString());
+		bw.write(sb.toString());
+		bw.flush();
+	}
 }
