@@ -21,12 +21,7 @@ public class Main {
         if(queue.isEmpty()) System.out.println(0);
         StringBuilder sb = new StringBuilder();
         while(!queue.isEmpty()){
-            int command = stack.pop();
-            if(command == 1){
-                sb.append(queue.pollFirst());
-            } else {
-                sb.append(queue.pollFirst());
-            }
+            sb.append(queue.pollFirst());
         }
             System.out.println(sb.toString());
     }
