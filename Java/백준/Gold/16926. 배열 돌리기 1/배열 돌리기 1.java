@@ -24,24 +24,22 @@ public class Main {
             ArrayList<Integer> list = new ArrayList<>();
             
             for(int j = i ; j < M-i; j++) list.add(arr[i][j]);
-            for(int j = i+1 ; j < N-i; j++) list.add(arr[j][M-1-i]);
-            for(int j = M-2-i ; j >= i; j--) list.add(arr[N-1-i][j]);
+            for(int j = i+1 ; j < N-i-1; j++) list.add(arr[j][M-i-1]);
+            for(int j = M-1-i ; j >= i; j--) list.add(arr[N-i-1][j]);
             for(int j = N-2-i ; j > i; j--) list.add(arr[j][i]);   
 
             int len = list.size();
             int rotate = R % len;
             
-            Collections.rotate(list, -rotate);
+            Collections.rotate(list, -R);
             int index = 0;
             
                 
             for(int j = i ; j < M-i; j++) arr[i][j]= list.get(index++);
-            for(int j = i+1 ; j < N-i; j++) arr[j][M-1-i] = list.get(index++);                    
-            for(int j = M-2-i ; j >= i; j--) arr[N-1-i][j] = list.get(index++);
+            for(int j = i+1 ; j < N-i-1; j++) arr[j][M-i-1] = list.get(index++);                    
+            for(int j = M-1-i ; j >= i; j--) arr[N-i-1][j] = list.get(index++);
             for(int j = N-2-i ; j > i; j--) arr[j][i] = list.get(index++);
-
-         
-            
+           
         }
         
 
