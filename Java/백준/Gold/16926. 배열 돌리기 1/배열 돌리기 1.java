@@ -18,8 +18,41 @@ public class Main {
             }
         }
         
-        rotate();
-        print();
+        int l = Math.min(M, N)/2;
+        
+        for(int i = 0 ; i <l ; i++){
+            ArrayList<Integer> list = new ArrayList<>();
+            
+            for(int j = i ; j < M-i; j++) list.add(arr[i][j]);
+            for(int j = i+1 ; j < N-i; j++) list.add(arr[j][M-1-i]);
+            for(int j = M-2-i ; j >= i; j--) list.add(arr[N-1-i][j]);
+            for(int j = N-2-i ; j > i; j--) list.add(arr[j][i]);   
+
+            int len = list.size();
+            int rotate = R % len;
+            
+            Collections.rotate(list, -rotate);
+            int index = 0;
+            
+                
+            for(int j = i ; j < M-i; j++) arr[i][j]= list.get(index++);
+            for(int j = i+1 ; j < N-i; j++) arr[j][M-1-i] = list.get(index++);                    
+            for(int j = M-2-i ; j >= i; j--) arr[N-1-i][j] = list.get(index++);
+            for(int j = N-2-i ; j > i; j--) arr[j][i] = list.get(index++);
+
+         
+            
+        }
+        
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                sb.append(arr[i][j]).append(' ');
+            }
+            sb.append('\n');
+        }
+        System.out.print(sb);
         
         
     }
