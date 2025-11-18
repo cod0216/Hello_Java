@@ -33,11 +33,6 @@ public class ClientV2 {
 
         }
 
-
-
-
-
-
         log("연결 종료: " + socket);
         input.close();
         output.close();
