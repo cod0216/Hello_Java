@@ -27,10 +27,11 @@ public class WriteHandler implements Runnable{
         Scanner scanner = new Scanner(System.in);
         try{
             String username = inputUsername(scanner);
-
+            output.writeUTF("/join" + DELIMITER + username);
             while(true){
                 String toSend = scanner.nextLine();
                 if(toSend.isEmpty()) continue;
+
                 if(toSend.equals("/exit")){
                     output.writeUTF(toSend);
                     break;
@@ -50,7 +51,7 @@ public class WriteHandler implements Runnable{
     }
 
     private static String inputUsername(Scanner scanner) {
-        System.out.println("이름을 입력하세요");
+        System.out.print("이름을 입력하세요 : ");
         String username;
         do{
             username = scanner.nextLine();
