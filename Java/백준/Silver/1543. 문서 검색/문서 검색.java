@@ -1,51 +1,32 @@
-import java.util.*;
 import java.io.*;
-
+import java.util.*;
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-        String[] input = buffer.readLine().split("");
-        int N = input.length;
-        char[] A = new char[N];
+    final static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) throws IOException{
         
-        for(int i = 0 ; i < N; i++){
-            A[i] = input[i].charAt(0);
-        }
-
-        int sum = 0;
-        
-        input = buffer.readLine().split("");
-        int M = input.length;
-        char[] B = new char[M];
-        for(int i = 0 ; i < M; i++){
-            B[i] = input[i].charAt(0);
-        }
-        
-        int start = 0;
-        int end = M;
-        int cnt = 0;
-        
-        while(end <= N){
-            int idx = 0;
-            boolean isNot = false;
-            for(int i = start; i< end; i++){
-                if(A[i] != B[idx++]){
-                    isNot = true;
-                    break;  
-                } 
+        char [] wordList = br.readLine().toCharArray();
+        char [] findWord = br.readLine().toCharArray();
+        int pos = 0;
+        int answer = 0;
+        int range = wordList.length - findWord.length;
+        while (pos <= range){
+            boolean isFlag = true;
+            int curPos = pos;
+            for (int j = 0; j < findWord.length; j++) {
+                if (wordList[curPos] == findWord[j]){
+                    curPos++;
+                }else{
+                    isFlag = false;
+                    break;
+                }
             }
-            
-            if(isNot){
-                start++;
-                end++;
+            if (isFlag){
+                pos = curPos;
+                answer++;
             }else{
-                start = end;
-                end = end+M;
-                cnt++;
+                pos++;
             }
         }
-
-        System.out.println(cnt);
-        
+        System.out.print(answer);
     }
 }
