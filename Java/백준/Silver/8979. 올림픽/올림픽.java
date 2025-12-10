@@ -33,15 +33,16 @@ public class Main {
         int preGold=0;
         int preSilver=0;
         int preBronze=0;
-        
+        int cnt = 0;
         while(!queue.isEmpty()){
             int[] A = queue.poll();
+            cnt++;
             if(
                 preGold == A[1] &&
                 preSilver == A[2] &&
                 preBronze == A[3]
-            ) preIdx = idx;
-            else idx++;
+            ) {}
+            else idx = cnt;
             if(A[0] == K) System.out.println(idx);
 
             preIdx = idx;
