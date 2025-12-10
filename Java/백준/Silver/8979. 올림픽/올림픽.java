@@ -34,7 +34,8 @@ public class Main {
         int preSilver=0;
         int preBronze=0;
         
-        for(int[] A : queue){
+        while(!queue.isEmpty()){
+            int[] A = queue.poll();
             if(
                 preGold == A[1] &&
                 preSilver == A[2] &&
