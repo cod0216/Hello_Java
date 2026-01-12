@@ -1,26 +1,19 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException{
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println(fuck(Integer.parseInt(buffer.readLine())));
-    }
-              
-    public static int fuck(int n){
-        if (n == 4 || n == 7) {
-           	return -1;
+        int N = Integer.parseInt(buffer.readLine());
+        int cnt = 0;
+        while(N>0){
+            if(N % 5 == 0){
+                cnt += N/5;
+                break;
+            }
+            cnt++;
+            N -= 3;
         }
-        else if (n % 5 == 0) {
-           	return (n / 5);
-        }
-        else if (n % 5 == 1 || n % 5 == 3) {
-           	return (n / 5) + 1;
-        }
-        else if (n % 5 == 2 || n % 5 == 4) {
-           	return (n / 5) + 2;
-        }
-        
-        return -1;
+        System.out.println(N < 0 ? -1 : cnt);
     }
 }
