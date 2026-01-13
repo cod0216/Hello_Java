@@ -1,64 +1,59 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    static int[] card;
+    public static void main(String[] args) throws IOException{
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        int n = Integer.parseInt(buffer.readLine());
-
-        int[] card = new int[n];
+        int N = Integer.parseInt(buffer.readLine());
         String[] input = buffer.readLine().split(" ");
-        for(int i = 0; i<n; i++ ) card[i] = Integer.parseInt(input[i]);
-
-        int m = Integer.parseInt(buffer.readLine());
-        int[] cntCard = new int[m];
-        input = buffer.readLine().split(" ");
-        for(int i = 0; i<m; i++ ) cntCard[i] = Integer.parseInt(input[i]);
-        Arrays.sort(card);
-
-        for(int i = 0; i <m; i++){
-            int key = cntCard[i];
-            int ans = high(card,key)-low(card,key);
-            sb.append(ans).append(" ");
+        card = new int[N];
+        for(int i = 0; i < N; i++){
+            card[i] = Integer.parseInt(input[i]);
         }
+        
+        int M = Integer.parseInt(buffer.readLine());
+        Arrays.sort(card);
+        
+        int[] target = new int[M];
+        input = buffer.readLine().split(" ");
+        
+        for(int i = 0 ; i < M; i++){
+            target[i] = Integer.parseInt(input[i]);
+        }
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0 ; i < M; i++){
+            int t = target[i];
+            int ans = high(t,N)-low(t,N);
+            sb.append(ans + " ");
+        }        
         System.out.println(sb.toString());
     }
-
-    public static int low(int[] arr, int key){
-        int l = 0; int h = arr.length;
-
-        while(l < h){
-            int mid = (l+h)/2;
-
-            if(key <= arr[mid]){
-                h = mid;
-            }
-            else {
-                l = mid + 1;
+    public static int low(int t, int n){
+        int s = 0;
+        int e = n;
+        while(s < e){
+            int m = (s+e)/2;
+            if(t <= card[m]){
+                e = m;
+            } else{
+                s = m+1;
             }
         }
-        return l;
+        return s;
     }
 
-    public static int high(int[] arr, int key){
-        int l = 0;
-        int h = arr.length;
-
-        while(l<h){
-            int mid = (l+h)/2;
-
-            if(key < arr[mid]){
-                h = mid;
-            }
-            else {
-                l = mid + 1;
+    public static int high(int t, int n){
+        int s = 0;
+        int e = n;
+        while(s < e){
+            int m = (s+e)/2;
+            if(t < card[m]){
+                e = m;
+            } else{
+                s = m+1;
             }
         }
-        return l;
+        return s;
     }
 }
