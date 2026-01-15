@@ -52,9 +52,11 @@ public class Main {
                 }    
             }
         }
+        StringBuilder sb = new StringBuilder();
         
         for(int i = 1 ; i <= N; i++){
-            System.out.print(dist[i] + " ");
+            sb.append(dist[i]).append(" ");
         }
+        System.out.println(sb.toString());
     }
 }
