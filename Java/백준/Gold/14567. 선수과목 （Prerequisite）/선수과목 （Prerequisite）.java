@@ -1,63 +1,60 @@
-
-
-import java.io.*;
 import java.util.*;
-
+import java.io.*;
 public class Main {
-    static int n, m, countArr[], arr[];
-    static ArrayList<Integer>[] list;
-
+    static int N, M, target[];
+    static LinkedList<Integer>[] list;
+    static boolean[] visited;
     public static void main(String[] args) throws IOException {
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-
         String[] input = buffer.readLine().split(" ");
-
-        n = Integer.parseInt(input[0]);
-        m = Integer.parseInt(input[1]);
-
-        list = new ArrayList[n+1];
-        countArr = new int[n+1];
-        arr = new int[n+1];
-
-        for(int i = 0; i <= n; i++) list[i] = new ArrayList<>();
-
-
-        for(int i = 0 ; i < m; i++){
+        
+        int N = Integer.parseInt(input[0]);
+        int M = Integer.parseInt(input[1]);
+        target = new int[N+1];
+        visited = new boolean[N+1];
+        list = new LinkedList[N+1];
+        int[] dist = new int[N+1];
+        
+        for(int i = 0 ; i <=N; i++) list[i] = new LinkedList<>();
+        
+        for(int i = 0; i < M; i++){
             input = buffer.readLine().split(" ");
             int start = Integer.parseInt(input[0]);
-            int end = Integer.parseInt(input[1]);
-
+            int end = Integer.parseInt(input[1]);            
+            
             list[start].add(end);
-            countArr[end]++;
+            target[end] +=1;
         }
-
-        polo();
-
-        for(int i = 1; i <= n; i++){
-            System.out.print(arr[i]+" ");
-        }
-
-    }
-    public static void polo(){
-        int cnt = 1;
+        
         LinkedList<Integer> queue = new LinkedList<>();
-        for(int i = 1; i<=n; i++){
-            if(countArr[i] == 0){
+        int cnt = 1;
+        for(int i = 1 ; i <= N; i++){
+            if(target[i] == 0) {
+                visited[i] = true;
                 queue.offer(i);
-                arr[i] = cnt;
+                dist[i] = cnt;
             }
-
         }
         while(!queue.isEmpty()){
-            int cur = queue.poll();
-            for(int now : list[cur]){
-
-                countArr[now]--;
-                if(countArr[now] == 0){
-                    queue.offer(now);
-                    arr[now] = arr[cur]+1;
-                }
+            int size = queue.size();
+            cnt++;
+            for(int i = 0 ; i < size; i++){
+                int subject = queue.poll();
+                for(int s : list[subject]){
+                    if(target[s] != 0){
+                        target[s] -= 1;
+                        if(target[s] == 0 && !visited[s]){
+                            queue.offer(s);
+                            visited[s] = true;
+                            dist[s] = cnt;
+                        } 
+                    }
+                }    
             }
+        }
+        
+        for(int i = 1 ; i <= N; i++){
+            System.out.print(dist[i] + " ");
         }
     }
 }
