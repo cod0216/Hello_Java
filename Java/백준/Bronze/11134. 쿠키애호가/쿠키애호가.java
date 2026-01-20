@@ -10,9 +10,7 @@ public class Main {
             String[] input = buffer.readLine().split(" ");
             int N = Integer.parseInt(input[0]);
             int C = Integer.parseInt(input[1]);            
-            
-            if(N%C == 0) System.out.println(N/C);
-            else System.out.println(N/C + 1);
+            System.out.println( N%C == 0 ? N/C : N/C + 1);
             
             t++;
         }
