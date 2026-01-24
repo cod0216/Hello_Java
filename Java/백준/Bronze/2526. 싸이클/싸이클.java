@@ -18,14 +18,11 @@ public class Main {
 		while(flag) {
 			cnt++;
 			last = last*N%M;
-			if(last != N && map.containsKey(last)) {
-				flag = !flag;	
-				int order = map.get(last);
-				ans = cnt-order;
-			}
+			if(last != N && map.containsKey(last)) flag = !flag;	
 			else map.put(last,cnt);
-			
 		}
+        
+        ans = cnt - map.get(last);
 		System.out.print(ans);
 	}
 }
