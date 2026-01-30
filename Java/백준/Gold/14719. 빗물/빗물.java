@@ -1,51 +1,46 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
 public class Main {
-	static int h, w, map[][], height[];
-
-	public static void main(String[] args) throws IOException {
-
-		BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-
-		String[] input = buffer.readLine().split(" ");
-
-		h = Integer.parseInt(input[0]);
-		w = Integer.parseInt(input[1]);
-
-		map = new int[h][w];
-        height = new int[w];
+    static int N, M, arr[], total;
+    public static void main(String[] args) throws IOException {
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+        String[] input = buffer.readLine().split(" ");
+        N = Integer.parseInt(input[0]);
+        M = Integer.parseInt(input[1]);
         
-		input = buffer.readLine().split(" ");
+        arr = new int[M];
+        input = buffer.readLine().split(" ");
+        int max = 0;
+        int mid = 0;
+        for(int i = 0 ; i < M; i++){
+            arr[i] = Integer.parseInt(input[i]);
+            if(max < arr[i]){
+                mid = i;
+                max = arr[i];
+            }
+        }
+        for(int i = 1; i < M-1; i++){
+            int left = checkLeft(i);
+            int right = checkRight(i);            
+            int water = Math.min(left, right) - arr[i];
+            if(water > 0) total += water;
+        }
 
-		for (int i = 0; i < w; i++) {
-			height[i] = Integer.parseInt(input[i]);
-		}
-
-		System.out.println(rain());
-	}
-
-	public static int rain() {
-		int sum = 0;
-		for (int i = 1; i < w - 1; i++) {
-
-			int now = height[i];
-
-			int lMax = 0;
-			for (int j = 0; j <= i; j++) {
-				lMax = Math.max(lMax, height[j]);
-			}
-
-			int rMax = 0;
-			for (int j = i; j < w; j++) {
-				rMax = Math.max(rMax, height[j]);
-			}
-
-			sum += Math.min(lMax, rMax) - now;
-		}
-		if (sum < 0)
-			sum = 0;
-		return sum;
-
-	}
+        System.out.println(total);
+    }
+    public static int checkLeft(int base){
+        int left = 0;
+        for(int i = 0; i < base; i++){
+            left = Math.max(left,arr[i]);
+        }
+        return left;
+    }
+    public static int checkRight(int base){
+        int right = 0;
+        for(int i = base+1; i < M; i++){
+            right = Math.max(right, arr[i]);
+        }        
+        return right;
+    }
 }
