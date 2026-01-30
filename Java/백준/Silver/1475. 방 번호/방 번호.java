@@ -21,8 +21,7 @@ public class Main {
         if(state %2 == 0) state = state/2;
         else state = state/2 + 1;
         
-        if(max > state) System.out.println(max);
-        else System.out.println(state);
+        System.out.println(max > state ? max : state);
 
     }
 }
