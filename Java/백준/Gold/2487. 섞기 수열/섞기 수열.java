@@ -30,12 +30,9 @@ public class Main {
             set.add(cnt);
         }
         
-        Iterator<Integer> iter = set.iterator();
         long result = 1;
+        for(int e : set) result = lcm(result, (long)e);
         
-        while(iter.hasNext()){
-            result = lcm(result, (long)iter.next());
-        }
         System.out.println(result);
     }
     
