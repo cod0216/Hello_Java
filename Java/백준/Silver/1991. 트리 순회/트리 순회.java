@@ -1,69 +1,61 @@
 import java.util.*;
 import java.io.*;
 
-class Node{
-    char value;
-    Node left;
-    Node right;
+class Node {
+    char v;
+    Node left = null;
+    Node right = null;
     
-    public Node(char value){
-        this.value = value;
-        this.left = null;
-        this.right = null;
+    public Node(char c){
+        v = c;
     }
 }
-
 public class Main {
     static Node[] tree;
-    
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException{
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(buffer.readLine());
-        tree = new Node[N+1];
-        for(int i = 0 ; i < N; i++){
+        tree = new Node[N];
+        for(int i = 0; i < N; i++){
             String[] input = buffer.readLine().split(" ");
-            char mid = input[0].charAt(0);
-            char left = input[1].charAt(0);
-            char right = input[2].charAt(0);
-            
-            if(tree[mid - 'A'] == null){
-                Node node = new Node(mid);
-                tree[mid - 'A'] = node;
+            char a = input[0].charAt(0);
+            char b = input[1].charAt(0);
+            char c = input[2].charAt(0);
+            if(tree[a - 'A'] == null) tree[a - 'A'] = new Node(a);
+            if(b != '.'){
+                if(tree[b-'A'] == null){
+                    tree[b-'A'] = new Node(b);
+                    tree[a-'A'].left = tree[b-'A'];
+                }
             }
-            if(left != '.'){
-                tree[left -'A'] = new Node(left);
-                tree[mid - 'A'].left = tree[left-'A'];
-            }
-            if(right != '.'){
-                tree[right-'A'] = new Node(right);
-                tree[mid - 'A'].right = tree[right-'A'];
+            if(c != '.'){
+                if(tree[c-'A'] == null){
+                    tree[c-'A'] = new Node(c);
+                    tree[a-'A'].right = tree[c-'A'];
+                }
             }
         }
-        
-        preorder(tree[0]);
+
+        preOrder(tree[0]);
         System.out.println();
-        inorder(tree[0]);
+        inOrder(tree[0]);
         System.out.println();
-        postorder(tree[0]);
-        System.out.println();
+        postOrder(tree[0]);
     }
-    
-    public static void preorder(Node node){
-        if(node == null) return;
-        System.out.print(node.value);
-        preorder(node.left);
-        preorder(node.right);        
+    public static void preOrder(Node c){
+        System.out.print(c.v);
+        if(c.left != null) preOrder(c.left);
+        if(c.right != null) preOrder(c.right);
     }
-    public static void inorder(Node node){
-        if(node == null) return;
-        inorder(node.left);
-        System.out.print(node.value);
-        inorder(node.right);        
+    public static void inOrder(Node c){
+        if(c.left != null) inOrder(c.left);
+        System.out.print(c.v);        
+        if(c.right != null) inOrder(c.right);
     }
-    public static void postorder(Node node){
-        if(node == null) return;
-        postorder(node.left);
-        postorder(node.right);        
-        System.out.print(node.value);
+    public static void postOrder(Node c){
+        if(c.left != null) postOrder(c.left);
+        if(c.right != null) postOrder(c.right);
+        System.out.print(c.v);
     }
+
 }
