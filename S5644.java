@@ -2,6 +2,7 @@ import java.io.*;
 
 public class S5644 {
 
+
     static int[] dx = {0, -1, 9, 1, 0};
     static int[] dy = {0, 0, 1, 0, -1};
     static int M;
