@@ -3,7 +3,7 @@ package TIL;
 import java.util.*;
 import java.io.*;
 
-public class J1753 {
+public class J1753_2 {
     static LinkedList<int[]>[] A;
     static boolean[] visited;
     static int[] array;
